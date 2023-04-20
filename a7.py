@@ -11,5 +11,11 @@ xor_data = [
 
 orn = NeuralNet(2, 3, 1)
 
-orn.train(or_data)
-print(orn.test_with_expected(or_data))
+orn.train(xor_data)
+print(orn.test_with_expected(xor_data))
+
+
+print()
+
+#nt("\n\nTraining voter opinion\n\n")
+
