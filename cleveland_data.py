@@ -12,16 +12,27 @@ def parse_line(line: str) -> Tuple[List[float], List[float]]:
         tuple of input list and output list
     """
     tokens = line.split(",")
+
     print()
     print(tokens)
-    print("anojghdsa")
-    out = int(tokens[13])
-    # output = [1 if out == 1 else 0.5 if out == 2 else 1]
+    if "?" not in tokens: 
+        out = int(tokens[13])
+        output = [1 if out == 1 else 0.5 if out == 2 else 1]
 
-    inpt = [float(x) for x in tokens[1:]]
-    print((inpt, [out]))
-    
-    return (inpt, [out])
+        inpt = [float(x) for x in tokens[1:13]]
+        print((inpt, [out]))
+        
+        return (inpt, [out])
+    else: 
+        out = int(tokens[13])
+        output = [1 if out == 1 else 0.5 if out == 2 else 1]
+        print("found")
+
+        inpt = [float(x) for x in tokens[1:12]]
+        inpt.append(1)
+        print((inpt, [out]))
+        
+        return (inpt, [out])
 
 
 def normalize(data: List[Tuple[List[float], List[float]]]):
@@ -51,7 +62,57 @@ def normalize(data: List[Tuple[List[float], List[float]]]):
 
 
 with open("processed.cleveland.data", "r") as f:
+        
+    # # Read in the file contents as a string
+    # contents = f.read()
+
+    # # Split the contents of the file into individual words
+    # words = contents.split()
+
+    # # Loop through each word and replace it with a random integer
+    # for i in range(len(words)):
+    #     # Check if the current word is composed entirely of letters
+    #     if words[i].isalpha():
+    #         # Generate a random integer between 1 and 4
+    #         random_int = random.randint(1, 4)
+    #         # Replace the current word with the random integer
+    #         words[i] = str(random_int)
+
+    # # Join the words back together into a string with spaces between them
+    # new_contents = ' '.join(words)
+
     training_data = [parse_line(line) for line in f.readlines() if len(line) > 4]
+
+for line in training_data: 
+    print (line)
+
+# # Open the input file for reading
+# with open("processed.cleveland.data", "r") as f:
+    
+#     # Read in the file contents as a string
+#     contents = f.read()
+
+#     # Split the contents of the file into individual words
+#     words = contents.split()
+
+#     # Loop through each word and replace it with a random integer
+#     for i in range(len(words)):
+#         # Check if the current word is composed entirely of letters
+#         if words[i].isalpha():
+#             # Generate a random integer between 1 and 50
+#             random_int = random.randint(1, 50)
+#             # Replace the current word with the random integer
+#             words[i] = str(random_int)
+
+#     # Join the words back together into a string with spaces between them
+#     new_contents = ' '.join(words)
+
+# Open the output file for writing and write the new contents to it
+# with open("processed.cleveland.data", "r") as f:
+#     f.write(new_contents)
+
+
+
 
 td = normalize(training_data)
 
