@@ -28,7 +28,7 @@ def parse_line(line: str) -> Tuple[List[float], List[float]]:
         output = [1 if out == 1 else 0.5 if out == 2 else 1]
         print("found")
 
-        inpt = [float(x) for x in tokens[1:12]]
+        inpt = [float(x) for x in tokens[1:13]]
         inpt.append(1)
         print((inpt, [out]))
         
@@ -85,6 +85,7 @@ with open("processed.cleveland.data", "r") as f:
 
 for line in training_data: 
     print (line)
+    print("Here")
 
 # # Open the input file for reading
 # with open("processed.cleveland.data", "r") as f:
