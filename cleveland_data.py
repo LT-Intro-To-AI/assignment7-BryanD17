@@ -17,22 +17,24 @@ def parse_line(line: str) -> Tuple[List[float], List[float]]:
     print(tokens)
     if "?" not in tokens: 
         out = int(tokens[13])
-        output = [1 if out == 1 else 0.5 if out == 2 else 1]
+        output = [0 if out == 0 else 0.25 if out == 1 else
+            0.5 if out == 2 else 0.75 if out == 3 else 1
+                ]
 
         inpt = [float(x) for x in tokens[1:13]]
         print((inpt, [out]))
         
         return (inpt, [out])
-    else: 
-        out = int(tokens[13])
-        output = [1 if out == 1 else 0.5 if out == 2 else 1]
-        print("found")
+    # else: 
+    #     out = int(tokens[13])
+    #     output = [1 if out == 1 else 0.5 if out == 2 else 1]
+    #     print("found")
 
-        inpt = [float(x) for x in tokens[1:13]]
-        inpt.append(1)
-        print((inpt, [out]))
+    #     inpt = [float(x) for x in tokens[:13]]
+    #     inpt.append(1)
+    #     print((inpt, [out]))
         
-        return (inpt, [out])
+    #     return (inpt, [out])
 
 
 def normalize(data: List[Tuple[List[float], List[float]]]):
@@ -116,10 +118,13 @@ for line in training_data:
 
 
 td = normalize(training_data)
+test_data = (td)
 
-nn = NeuralNet(13, 3, 1)
+nn = NeuralNet(13, 7, 1)
 nn.train(td, iters=1000, print_interval=1000, learning_rate=0.1)
 
-for i in nn.test_with_expected(td):
+for i in nn.test_with_expected(test_data):
+    print(i)
     print(f"desired: {i[1]}, actual: {i[2]}")
+    print(i)
 
